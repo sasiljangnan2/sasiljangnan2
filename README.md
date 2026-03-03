@@ -14,7 +14,7 @@
 		</td>
 	</tr>
 </table>
-<iframe src="https://gamer2810.github.io/steam-miniprofile/?accountId=76561198360243498&interactive=true&vanityId=ssawual"
-    style="border:0px #ffffff none;" name="myiFrame" scrolling="no" frameborder="1"
-     marginheight="0px" marginwidth="0px" height="400px" width="600px" allowfullscreen>
-    </iframe>
+
+> GitHub `README.md`에서는 보안 정책으로 `iframe`이 렌더링되지 않습니다.
+>
+> `iframe`은 GitHub Pages에서 확인하세요: https://ssawual.github.io/sasiljangnan2/
