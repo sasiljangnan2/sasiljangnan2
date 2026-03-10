@@ -1,5 +1,5 @@
 [![Solved.ac Profile](http://mazassumnida.wtf/api/v2/generate_badge?boj=ssawaul)](https://solved.ac/profile/ssawaul)
-![Majsoul Badge 3P](http://jangnan2.kro.kr/127512551/badge.svg)
+![Majsoul Badge 3P](https://mahjong-soul-api.onrender.com/badge/127512551)
 <table cellpadding="10" cellspacing="0">
 	<tr>
 		<td width="110" align="center">
