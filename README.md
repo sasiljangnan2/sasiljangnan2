@@ -1,3 +1,6 @@
+
+![Majsoul Badge 4P](https://mahjong-soul-api.onrender.com/badge/127512551)
+![Majsoul Badge 3P](https://mahjong-soul-api.onrender.com/badge3/127512551)
 [![Solved.ac Profile](http://mazassumnida.wtf/api/v2/generate_badge?boj=ssawaul)](https://solved.ac/profile/ssawaul)
 <table cellpadding="10" cellspacing="0">
 	<tr>
@@ -15,8 +18,6 @@
 		</td>
 	</tr>
 </table>
-▶ Steam 스타일 미니프로필 창: [열기](./steam.html)
-![Majsoul Badge 4P](https://mahjong-soul-api.onrender.com/badge/127512551)
-![Majsoul Badge 3P](https://mahjong-soul-api.onrender.com/badge3/127512551)
 
+▶ Steam 스타일 미니프로필 창: [열기](./steam.html)
 
