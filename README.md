@@ -1,4 +1,3 @@
-
 <table cellpadding="6" cellspacing="0">
 	<tr>
 		<td align="center">
@@ -9,11 +8,11 @@
 		</td>
 	</tr>
 </table>
-[![Solved.ac Profile](http://mazassumnida.wtf/api/v2/generate_badge?boj=ssawaul)](https://solved.ac/profile/ssawaul)
+
 <table cellpadding="10" cellspacing="0">
 	<tr>
 		<td valign="top">
-			<img src="https://mahjong-soul-api.onrender.com/badge3/127512551" alt="Majsoul Badge 3P" />
+			<img src="http://mazassumnida.wtf/api/v2/generate_badge?boj=ssawaul" alt="Solved.ac Profile" />
 		</td>
 		<td width="110" align="center" valign="top">
 			<a href="https://steamcommunity.com/id/ssawual/">
