@@ -1,5 +1,5 @@
 [![Solved.ac Profile](http://mazassumnida.wtf/api/v2/generate_badge?boj=ssawaul)](https://solved.ac/profile/ssawaul)
-
+![Majsoul Badge 3P](http://127.0.0.1:8000/api/player/127512551/badge.svg)
 <table cellpadding="10" cellspacing="0">
 	<tr>
 		<td width="110" align="center">
@@ -18,3 +18,9 @@
 </table>
 
 ▶ Steam 스타일 미니프로필 창: [열기](./steam.html)
+
+## 작혼 전적
+
+- 외부 전적 사이트: [Amae-Koromo](https://amae-koromo.sapk.ch/)
+- 내 플레이어 페이지: [열기](https://amae-koromo.sapk.ch/player/123973468)
+- 최근 조회값(API): `level.id=10303`, `score=1024`, `delta=+48`
