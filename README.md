@@ -1,18 +1,18 @@
 
 ![Majsoul Badge 4P](https://mahjong-soul-api.onrender.com/badge/127512551)
-![Majsoul Badge 3P](https://mahjong-soul-api.onrender.com/badge3/127512551)
 [![Solved.ac Profile](http://mazassumnida.wtf/api/v2/generate_badge?boj=ssawaul)](https://solved.ac/profile/ssawaul)
+![Majsoul Badge 3P](https://mahjong-soul-api.onrender.com/badge3/127512551)
 <table cellpadding="10" cellspacing="0">
 	<tr>
 		<td width="110" align="center">
-			<a href="https://steamcommunity.com/id/ssawual/">
+			<a href="https://www.acmicpc.net/user/ssawaul">
 				<img src="https://avatars.akamai.steamstatic.com/8c8348960281869a66dd59d08fb2112e32523b30_full.jpg" width="96" alt="Steam Avatar" />
 			</a>
 		</td>
 		<td>
 			<img src="https://store.cloudflare.steamstatic.com/public/shared/images/header/logo_steam.svg" width="110" alt="Steam" /><br/>
 			<b>사실장난임</b><br/>
-			<a href="https://steamcommunity.com/id/ssawual/">@ssawual</a><br/>
+			<a href="https://www.acmicpc.net/user/ssawaul">@ssawual</a><br/>
 			<img alt="Level" src="https://img.shields.io/badge/LEVEL-28-1B2838?style=for-the-badge&labelColor=171A21" />
 			<img alt="Status" src="https://img.shields.io/badge/ONLINE-66C0F4?style=for-the-badge&labelColor=171A21" />
 		</td>
