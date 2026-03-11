@@ -1,4 +1,5 @@
-
+[![badge preview](https://mahjong-soul-api.onrender.com/badge/127512551)](https://mahjong-soul-api.onrender.com/badge/127512551)
+[![badge preview](https://mahjong-soul-api.onrender.com/badge3/127512551)](https://mahjong-soul-api.onrender.com/badge3/127512551)
 
 <table cellpadding="8" cellspacing="0" style="border-color:transparent;">
 	<tr>
