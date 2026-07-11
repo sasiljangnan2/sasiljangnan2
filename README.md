@@ -4,7 +4,7 @@
 		<td align="center" valign="top">
 			<img src="https://mahjongsoulbadge-production.up.railway.app/badge/ssawaul?t=123123" alt="Majsoul Badge 4P" />
 			<br/>
-			<img src="https://mahjongsoulbadge-production.up.railway.app/badge3/ssawaul?" alt="Majsoul Badge 3P" />
+			<img src="https://mahjongsoulbadge-production.up.railway.app/badge3/ssawaul?t=123123" alt="Majsoul Badge 3P" />
 		</td>
 		<td align="center" valign="top">
 		<img src="http://mazassumnida.wtf/api/v2/generate_badge?boj=ssawaul" alt="Solved.ac Profile" />
