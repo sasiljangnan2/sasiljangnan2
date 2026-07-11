@@ -2,7 +2,7 @@
 <table cellpadding="8" cellspacing="0" style="border-color:transparent;">
 	<tr>
 		<td align="center" valign="top">
-			<img src="https://mahjongsoulbadge-production.up.railway.app/badge/ssawaul?" alt="Majsoul Badge 4P" />
+			<img src="https://mahjongsoulbadge-production.up.railway.app/badge/ssawaul?t=123123" alt="Majsoul Badge 4P" />
 			<br/>
 			<img src="https://mahjongsoulbadge-production.up.railway.app/badge3/ssawaul?" alt="Majsoul Badge 3P" />
 		</td>
