@@ -2,9 +2,9 @@
 <table cellpadding="8" cellspacing="0" style="border-color:transparent;">
 	<tr>
 		<td align="center" valign="top">
-			<img src="https://mahjongsoulbadge-production.up.railway.app/badge/ssawaul?t=123123" alt="Mahjong Soul Badge" />
+			<img src="https://mahjongsoulbadge-production.up.railway.app/badge/ssawaul?t=234234234" alt="Mahjong Soul Badge" />
 			<br/>
-			<img src="https://mahjongsoulbadge-production.up.railway.app/badge3/ssawaul?t=123123" alt="Mahjong Soul 3P Badge" />
+			<img src="https://mahjongsoulbadge-production.up.railway.app/badge3/ssawaul?t=123423423423" alt="Mahjong Soul 3P Badge" />
 		</td>
 		<td align="center" valign="top">
 		<img src="http://mazassumnida.wtf/api/v2/generate_badge?boj=ssawaul" alt="Solved.ac Profile" />
