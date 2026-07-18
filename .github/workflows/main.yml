@@ -2,85 +2,89 @@ name: Update Badge Cache Buster
 
 on:
   schedule:
-    - cron: '15 * * * *'  # 매시간 15분에 실행 (서버 sync 후 여유를 두고)
-  workflow_dispatch:        # 수동 실행 가능
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-badge-cache
+  cancel-in-progress: true
 
 jobs:
   update-readme:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out repository
+        uses: actions/checkout@v4
 
-      - name: Fetch updated_at from server
-        id: fetch
+      - name: Update badge URLs
+        env:
+          BADGE_SERVER_URL: ${{ secrets.BADGE_SERVER_URL }}
+          BADGE_NICKNAME: ${{ secrets.BADGE_NICKNAME }}
         run: |
-          # Render 무료 플랜은 spin-down 후 재시작에 최대 60초 소요.
-          # 최대 3회 재시도, 각 30초 간격으로 시도.
-          RESPONSE="{}"
-          for i in 1 2 3; do
-            RESPONSE=$(curl -sf --max-time 90 "${{ secrets.BADGE_SERVER_URL }}/api/debug/${{ secrets.BADGE_NICKNAME }}" 2>/dev/null || echo "{}")
-            UPDATED_AT=$(echo "$RESPONSE" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('updated_at',''))" 2>/dev/null || echo "")
-            if [ -n "$UPDATED_AT" ]; then
-              break
-            fi
-            echo "Attempt $i failed, retrying in 30s..."
-            sleep 30
-          done
+          python - <<'PY'
+          import os
+          import re
+          import time
+          from pathlib import Path
+          from urllib.parse import quote
 
-          if [ -z "$UPDATED_AT" ]; then
-            echo "Could not fetch updated_at after retries, skipping."
-            echo "skip=true" >> "$GITHUB_OUTPUT"
-          else
-            TS=$(python3 -c "from datetime import datetime; s='$UPDATED_AT'; dt=datetime.fromisoformat(s); print(int(dt.timestamp()))")
-            echo "ts=$TS" >> "$GITHUB_OUTPUT"
-            echo "skip=false" >> "$GITHUB_OUTPUT"
+          readme_path = Path("README.md")
+          server_url = os.environ.get("BADGE_SERVER_URL", "").strip().rstrip("/")
+          nickname = os.environ.get("BADGE_NICKNAME", "").strip()
+
+          if not server_url:
+              raise SystemExit("Repository secret BADGE_SERVER_URL is required")
+          if not nickname:
+              raise SystemExit("Repository secret BADGE_NICKNAME is required")
+          if not readme_path.exists():
+              raise SystemExit("README.md was not found")
+
+          timestamp = int(time.time())
+          encoded_nickname = quote(nickname, safe="")
+          badge_4p = f"{server_url}/badge/{encoded_nickname}?t={timestamp}"
+          badge_3p = f"{server_url}/badge3/{encoded_nickname}?t={timestamp}"
+
+          content = readme_path.read_text(encoding="utf-8")
+          replacements = (
+              (
+                  r"(!\[Mahjong Soul Badge\]\()[^)]+(\))",
+                  rf"\g<1>{badge_4p}\g<2>",
+              ),
+              (
+                  r"(!\[Mahjong Soul 3P Badge\]\()[^)]+(\))",
+                  rf"\g<1>{badge_3p}\g<2>",
+              ),
+          )
+
+          updated = content
+          replaced = 0
+          for pattern, replacement in replacements:
+              updated, count = re.subn(pattern, replacement, updated)
+              replaced += count
+
+          if replaced == 0:
+              raise SystemExit(
+                  "No supported badge Markdown was found. "
+                  "Use alt text 'Mahjong Soul Badge' or 'Mahjong Soul 3P Badge'."
+              )
+
+          readme_path.write_text(updated, encoding="utf-8")
+          print(f"Updated {replaced} badge URL(s) with t={timestamp}")
+          PY
+
+      - name: Commit updated README
+        run: |
+          if git diff --quiet -- README.md; then
+            echo "README badge URLs are already up to date."
+            exit 0
           fi
 
-      - name: Update README badge URLs
-        if: steps.fetch.outputs.skip == 'false'
-        run: |
-          TS="${{ steps.fetch.outputs.ts }}"
-          SERVER="${{ secrets.BADGE_SERVER_URL }}"
-          # badge URL의 ?t=숫자 부분만 교체 (없으면 추가)
-          python3 - <<'EOF'
-          import re, os, sys
-
-          ts = os.environ["TS"]
-          server = os.environ["SERVER"].rstrip("/")
-          # 도메인 부분을 동적으로 이스케이프
-          escaped = re.escape(server.replace("https://", "").replace("http://", ""))
-
-          with open("README.md", encoding="utf-8") as f:
-              content = f.read()
-
-          pattern = rf'(https?://{escaped}/badge3?/\d+)(\?[tv]=\d+)?'
-
-          def replacer(m):
-              return m.group(1) + f"?t={ts}"
-
-          new_content = re.sub(pattern, replacer, content)
-
-          if new_content == content:
-              print("No changes needed.")
-              sys.exit(0)
-
-          with open("README.md", "w", encoding="utf-8") as f:
-              f.write(new_content)
-          print("README updated.")
-          EOF
-        env:
-          TS: ${{ steps.fetch.outputs.ts }}
-          SERVER: ${{ secrets.BADGE_SERVER_URL }}
-
-      - name: Commit and push if changed
-        if: steps.fetch.outputs.skip == 'false'
-        run: |
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git diff --quiet && echo "No changes, skipping commit." && exit 0
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add README.md
-          git commit -m "chore: update badge cache buster [skip ci]"
+          git commit -m "chore: refresh badge cache"
           git push
