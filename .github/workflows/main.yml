@@ -51,11 +51,11 @@ jobs:
           content = readme_path.read_text(encoding="utf-8")
           replacements = (
               (
-                  r"(!\[Mahjong Soul Badge\]\()[^)]+(\))",
+                  r'(<img\b(?=[^>]*\balt=["\']Mahjong Soul Badge["\'])[^>]*\bsrc=["\'])[^"\']*(["\'][^>]*>)',
                   rf"\g<1>{badge_4p}\g<2>",
               ),
               (
-                  r"(!\[Mahjong Soul 3P Badge\]\()[^)]+(\))",
+                  r'(<img\b(?=[^>]*\balt=["\']Mahjong Soul 3P Badge["\'])[^>]*\bsrc=["\'])[^"\']*(["\'][^>]*>)',
                   rf"\g<1>{badge_3p}\g<2>",
               ),
           )
@@ -68,8 +68,9 @@ jobs:
 
           if replaced == 0:
               raise SystemExit(
-                  "No supported badge Markdown was found. "
-                  "Use alt text 'Mahjong Soul Badge' or 'Mahjong Soul 3P Badge'."
+                  "No supported badge image was found. "
+                  "Use an img tag with alt text 'Mahjong Soul Badge' "
+                  "or 'Mahjong Soul 3P Badge'."
               )
 
           readme_path.write_text(updated, encoding="utf-8")
