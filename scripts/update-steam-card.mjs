@@ -3,10 +3,9 @@ import { fileURLToPath } from 'node:url';
 
 const root = new URL('../', import.meta.url);
 const readme = await readFile(new URL('README.md', root), 'utf8');
-const cardUrl = readme.match(/https:\/\/github-readme-steam-card\.vercel\.app\/status\/\?[^\s)"<>]+/)?.[0];
-if (!cardUrl) throw new Error('Steam card URL was not found in README.md');
-const steamId = new URL(cardUrl).searchParams.get('steamid');
-if (!/^\d{17}$/.test(steamId ?? '')) throw new Error('Invalid SteamID64');
+const steamId = readme.match(/https:\/\/steamcommunity\.com\/profiles\/(\d+)/)?.[1];
+if (!/^\d{17}$/.test(steamId ?? '')) throw new Error('Steam profile link with a valid SteamID64 was not found in README.md');
+const cardUrl = `https://github-readme-steam-card.vercel.app/status/?steamid=${steamId}&show_in_game_bg=true&show_recent_game_bg=true&animated_avatar=true`;
 const steamApiKey = process.env.STEAM_API_KEY?.trim();
 if (!steamApiKey) throw new Error('STEAM_API_KEY is required. Add it as a repository Actions secret.');
 
