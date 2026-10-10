@@ -1,0 +1,40 @@
+name: Update Steam Profile Card
+
+on:
+  schedule:
+    - cron: "5 15 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-steam-card
+  cancel-in-progress: true
+
+jobs:
+  update-steam-card:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Generate Steam card with equipped profile background
+        env:
+          STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
+        run: node scripts/update-steam-card.mjs
+      - name: Commit updated Steam card
+        run: |
+          if git diff --quiet -- assets/steam-card.svg; then
+            echo "Steam card is already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/steam-card.svg
+          git commit -m "chore: refresh Steam profile card"
+          git pull --rebase
+          git push
