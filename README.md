@@ -18,5 +18,3 @@
     </td>
   </tr>
 </table>
-
-▶ Steam 스타일 미니프로필 창: [열기](https://sasiljangnan2.github.io/steam.html)
