@@ -47,7 +47,7 @@
                 <text x="160" y="56" font-size="16" fill="#57cbde">사실장난임</text>
                 
                 <!-- user status -->
-                <text x="430" y="56" font-size="16" fill="#57cbde">Online</text>      
+                <text x="430" y="56" font-size="16" fill="#57cbde">Away</text>      
             </g>
 
             <style type="text/css">
